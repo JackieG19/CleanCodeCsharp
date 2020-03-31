@@ -44,3 +44,23 @@ Improved Naming
 Customer customer;
 List<Customer> approvedCustomers;
 ```
+___
+
+- Inconsistent Naming Conventions
+```
+Customer GetCustomer(int _id);
+Customer saveCustomer(Customer GetCustomer);
+private int customerId;
+```
+- .Net Naming Conventions: PascalCase and camelCase
+```
+public class Customer
+{
+  private int _id;
+  public string Name { get; set; }
+  public void Charge(int amount)
+  {
+    var tax = 0;
+  }
+}
+```
