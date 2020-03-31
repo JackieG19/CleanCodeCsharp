@@ -64,3 +64,12 @@ public class Customer
   }
 }
 ```
+___
+- Poor Method Signatures
+```
+void Parse(int command)
+
+Impoved Name
+
+int Parse(string command)
+```
