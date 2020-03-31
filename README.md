@@ -77,3 +77,8 @@ int Parse(string command)
 1. Check the return type
 2. Check the method name
 3. Check the parameters
+___
+- Long Parameter Lists
+```
+CheckNotifications(null, 1, true, false, DateTime.Now);
+```
