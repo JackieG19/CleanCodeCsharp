@@ -7,8 +7,8 @@ namespace CleanCode
     {
         public class GetCustomersResult
         {
-            public IEnumerable<Customer> Customers { get; set; }
-            public int TotalCount { get; set; }
+            public IEnumerable<Customer> Items1 { get; set; }
+            public int Items2 { get; set; }
         }
         
         public void DisplayCustomers()
@@ -26,7 +26,7 @@ namespace CleanCode
         public Tulpe<IEnumerable<Customer>, int> GetCustomers(int pageIndex)
         {
             var totalCount = 100;
-            return Tulpe.Create((IEnumerable<Customer>) new List<Customer>(), totalCount);
+            return new GetCustomersResult() { Item1 = new List<Customer>(), Item2 = totalCount}
         }
     }
 }
