@@ -82,3 +82,4 @@ ___
 ```
 CheckNotifications(null, 1, true, false, DateTime.Now);
 ```
+This make is difficult to understand the code.
