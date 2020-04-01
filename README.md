@@ -83,3 +83,10 @@ ___
 CheckNotifications(null, 1, true, false, DateTime.Now);
 ```
 This make is difficult to understand the code.
+___
+- Output Parameters
+```
+int count = 0;
+var customers = GetCustomers(pageIndex, out count);
+// doesn't make sense to pass a data in and come out from the argument
+```
