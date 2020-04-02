@@ -21,38 +21,20 @@ namespace CleanCode
         
         public void Cancel()
         {
-            // Gold customers can cancel up to 24 hours before
-            if(Customer.LoyaltyPoints > 100)
-            {
-                // If reservation already started throw execption
-                if(DateTime.Now > From)
-                {
-                    throw new InvaildOperationExecption("It's too late to cancel");
-                }
-                
-                if((From - DateTime.Now).TotalHours < 24)
-                {
-                    throw new InvaildOperationExecption("It's too late to cancel");
-                }
-                IsCanceled = true;
-            }
-            
-            else
-            {
-                // Regular customers can cancel up to 48 hours before
-                
-                // If reservation already started throw execption
-                if(DateTime.Now > From)
-                {
-                    throw new InvaildOperationExecption("It's too late to cancel");
-                }
-                
-                if((From - DateTime.Now).TotalHours < 48)
-                {
-                    throw new InvaildOperationExecption("It's too late to cancel");
-                }
-                IsCanceled = true;
-            }
+            if(IsAlreadyStarted() || IsCancellationPeriodOver())
+                throw new InvaildOperationExecption("It's too late to cancel");                   
+            IsCanceled = true;
+        }
+        
+        private bool IsCancellationPeriodOver()
+        {
+            return (IsGoldCustomer() && LessThan(24)) ||
+                    !IsGoldCustomer() && LessThan(48);
+        }
+        
+        private bool LessThan(int maxHouse)
+        {
+            return (From - DateTime.Now).TotalHours < maxHouse;
         }
     }
 }
