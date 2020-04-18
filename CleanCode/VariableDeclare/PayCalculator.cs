@@ -2,19 +2,13 @@ using System;
 
 namespace CleanCode
 {
-    private PayFrequency _payFrequency;
-    
-    public PayCalculator(PayFrequency payFrequency)
-    {
-        _payFrequency = payFrequency;
-    }
-    
     public decimal CalcGross(decimal rate, decimal hours)
     {
         decimal overtimeHours = 0;
         decimal regularHours = 0;
         decimal regularPay = 0;
-        decimal grossPay;
+        decimal overtimePay = 0;
+        decimal grossPay = 0;
         
         if(_payFrequency == PayFrequency.Fortnightly)
         {
@@ -40,7 +34,6 @@ namespace CleanCode
                 regularHours = hours;
         }
         
-        decimal overtimePay = 0;
         if(overtimeHours > 0m)
         {
             overtimePay += (rate * 1.5m) * overtimeHours;
