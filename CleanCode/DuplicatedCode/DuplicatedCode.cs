@@ -1,21 +1,27 @@
-using System;
+using System; 
 
 namespace CleanCode.DuplicatedCode
 {
-    class DuplicatedCode 
+    public class Time
     {
-        public void AdmitGuest(string name. string admissionDateTime)
+        public int Hours { get; set; }
+        public int Minutes { get; set; }
+        
+        public Time(int hours, int minutes)
         {
-            // some logic
-            // ...
+            Hours = hours;
+            Minutes = minutes;
+        }
+        
+        private static Time Parse(string str)
+        {
+            int time;
+            var hours = 0;
+            var minutes = 0;
             
-            int times;
-            int hours = 0;
-            int minutes = 0;
-            
-            if(!string.IsNullOrWhiteSpace(admissionDateTime))
+            if(!string.IsNullOrWhiteSpace(str))
             {
-                if(int.TypeParse(admissionDateTime.Replace(":", ""), out.time))
+                if(int.TypeParse(str.Replace(":", ""), out.time))
                 {
                     hours = times / 100;
                     minutes = times % 100;
@@ -23,14 +29,24 @@ namespace CleanCode.DuplicatedCode
                 
                 else
                 {
-                    throw new ArgumentExpection("admissionDateTime");
+                    throw new ArgumentExpection("str");
                 }
             }
             else
-                throw new ArgumentExpection("admissionDateTime");
+                throw new ArgumentExpection("str");
             
+            return new Time(hours, minutes);
+        }
+    }
+    
+    class DuplicatedCode 
+    {
+        public void AdmitGuest(string admissionDateTime)
+        {   
             // some more logic
             // ...
+            
+            var time = Time.Parse(admissionDateTime);
             
             if(hours < 10)
             {
@@ -38,30 +54,12 @@ namespace CleanCode.DuplicatedCode
             }
         }
         
-        public void UpdateAdmission(string name. string admissionDateTime)
+        public void UpdateAdmission(int admissionId, string name, string admissionDateTime)
         {
             // some more logic
             // ...
             
-            int times;
-            int hours = 0;
-            int minutes = 0;
-            
-            if(!string.IsNullOrWhiteSpace(admissionDateTime))
-            {
-                if(int.TypeParse(admissionDateTime.Replace(":", ""), out.time))
-                {
-                    hours = times / 100;
-                    minutes = times % 100;
-                }
-                
-                else
-                {
-                    throw new ArgumentExpection("admissionDateTime");
-                }
-            }
-            else
-                throw new ArgumentExpection("admissionDateTime");
+            var time = Time.Parse(admissionDateTime);
             
             // some more logic
             // ...
