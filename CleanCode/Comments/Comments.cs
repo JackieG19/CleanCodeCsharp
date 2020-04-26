@@ -9,7 +9,7 @@ namespace CleanCode.Comments
 {
     public class Comments
     {
-        private int pf; // pay fequency
+        private int _payFequency;
         private CustomesrDbContext _dbContext;
         
         public Comments()
@@ -19,21 +19,27 @@ namespace CleanCode.Comments
         
         // return list of customers in a country
         public List<Customer> GetCustomer(int countryCode)
-        {
-            // TODO: We need to get rid of abcd once we revisit this method 
-            // Currently, its creating a coupling between x 
-            // and y and because of that we're not able to do xyz
-            
+        {   
             throw new NotImplementedException();
         }
         
         public void SumbitOrder(Order order)
         {
+            SaveOrder(order);
+            NotifyCustomer(order);
+        }
+        
+        private void SaveOrder(Order order)
+        {
             // save the order in the database
             _dbContext.Order.Add(order);
             _dbContext.SaveChange();
             
-            // send email to the customer
+            NotifyCustomer(order);
+        }
+        
+        private static void NotifyCustomer(Order order)
+        {
             var client = new SmtpClient();
             var mail = newMailMessage("noreply@site.com", order.Customer.Email, "Your order placed successfully", ".")
             client.Send(mail);
